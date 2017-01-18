@@ -97,10 +97,12 @@ public class TestDecorators {
     [Test]
     public void Empty() {
         Decorator<Base> dec = new TypeA( new Base( ));
+        TypeA decA = dec.Decoration<TypeA>();
 
-        dec = dec.RemoveDecoration<TypeA>();
+        var removed = dec.RemoveDecoration<TypeA>();
 
-        Assert.That( dec == null );
+        Assert.That( removed.Equals( decA ));
+        Assert.That( dec.DecoratorCount == 0 );
     }
 
 
