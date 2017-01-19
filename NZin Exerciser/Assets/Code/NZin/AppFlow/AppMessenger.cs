@@ -5,11 +5,14 @@ using UnityEngine;
 namespace NZin {
     
 /// <summary>
-/// The layer that takes messages from "anywhere" and routes them to the appropriate receivers
+/// The layer that takes messages from "anywhere" and routes them to the appropriate receivers.
+/// There are likely many "unconditional recievers" (like the Game Mode or HUD) that get first dibs at all messages.
+/// Then the other "standard" receivers only receive a message if it is addressed to them.
 /// </summary>
 public class AppMessenger : Singleton<AppMessenger>, Messagable {
     public const bool DEBUG_LOG = true;
 #pragma warning disable 162
+
 
     public void HandleMessage( Message msg ) {
         if( DEBUG_LOG )
@@ -27,11 +30,12 @@ public class AppMessenger : Singleton<AppMessenger>, Messagable {
         }
     }
 
+
     public void RegisterIdReceiver( Receivable receiver ) {
-        idReceivers.Add( receiver.Id, receiver );
+        idReceivers.Add( receiver.RId, receiver );
     }
     public void DeregisterIdReceiver( Receivable receiver ) {
-        idReceivers.Remove( receiver.Id );
+        idReceivers.Remove( receiver.RId );
     }
     public void RegisterUnconditionalReceiver( Messagable receiver ) {
         unconditionalReceivers.Add( receiver );

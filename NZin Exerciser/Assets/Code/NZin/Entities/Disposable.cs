@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace NZin.Entities {
 
-// zzz td: This should be a part of proper Entities, just like Comparable
+// zzz td: This should be a part of proper Entities, just like Comparable.
+// Or mabye a type of Base that Entities use
 
 /// <summary>
 /// A signal for any entity decoration to declare the whole chain should dispose of itself.

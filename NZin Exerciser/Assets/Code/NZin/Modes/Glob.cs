@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+namespace NZin {
+
 public class Glob {
 
     /* TODO zzz td
@@ -24,4 +27,6 @@ public class Glob {
 	}
 
 */
+}
+
 }

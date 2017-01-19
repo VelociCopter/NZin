@@ -15,7 +15,12 @@ public interface Messagable {
 /// Something that can be sent a directed message
 /// </summary>
 public interface Receivable : Messagable {
-    long Id     { get; }
+
+    /// <summary>
+    /// Receiver ID
+    /// </summary>
+    long RId     { get; }
+
 }
 
 }

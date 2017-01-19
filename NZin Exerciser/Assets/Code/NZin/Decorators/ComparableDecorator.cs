@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 
 
+// zzz should this instead be a base?? Maybe not
 
 public class ComparableDecorator<T> : Decorator<T>, Decoratable, IEquatable<ComparableDecorator<T>> where T : Decoratable {
 

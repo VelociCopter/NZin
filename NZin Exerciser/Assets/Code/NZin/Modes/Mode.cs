@@ -5,6 +5,7 @@ using StateMachines;
 
 namespace NZin {
 
+
 public interface Mode : State {
 }
 
@@ -16,7 +17,7 @@ public class GameMode : Mode {
     const bool DEBUG_LOG = true;
 
 
-    public Glob TransData			{ get; set; }
+    public Glob Glob			{ get; set; }
 
 
 	public virtual void OnExit() {

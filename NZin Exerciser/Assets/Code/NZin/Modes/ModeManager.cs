@@ -30,11 +30,14 @@ public class ModeManager : Singletinittable<ModeManager>, Initializable, Messaga
 	}
 
     public U ModeData<U>() where U : Glob {
-        return CurrentMode.TransData as U;
+        if( CurrentMode == null )
+            return null;
+        else 
+            return fsm.Data as U;
     }
 
-	public void JumpTo( Mode mode, Glob transState ) {
-		fsm.JumpTo( mode, transState );
+	public void JumpTo( Mode mode, Glob glob ) {
+		fsm.JumpTo( mode, glob );
 	}
 
 

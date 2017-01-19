@@ -10,7 +10,7 @@ using NUnit.Framework;
 public class TestDecorators {
 
 
-    #region Test classes
+    #region Tester classes
     class Base : Decoratable {
     }
     class TypeA : Decorator<Base>, Decoratable {

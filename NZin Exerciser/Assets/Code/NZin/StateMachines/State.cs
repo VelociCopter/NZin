@@ -7,7 +7,7 @@ namespace StateMachines {
 
 public interface State : Messagable {
 
-    Glob TransData       { get; set; }
+//zzz moved to the StateMachine itself    Glob TransData       { get; set; }
 	void OnExit();
 	void OnEnter();
 

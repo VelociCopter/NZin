@@ -29,7 +29,7 @@ public class Monoton<T> : MonoBehaviour where T : MonoBehaviour {
 		instance = go.AddComponent<T>();
 	}
     static string DynamicName() {
-        return "__"+typeof(T).ToString();
+        return "__"+typeof(T).ToString()+"__";
     }
 
 

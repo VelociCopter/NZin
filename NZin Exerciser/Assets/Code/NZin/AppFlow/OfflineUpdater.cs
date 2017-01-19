@@ -16,8 +16,8 @@ public class OfflineUpdater : Updater {
 
     static UpdaterUnityWrapper FindHelper() {
         if( helper == null ) {
-            var god = God.FindMe();
-            helper = god.AddComponent<UpdaterUnityWrapper>();
+            var god = God.Instance;
+            helper = god.gameObject.AddComponent<UpdaterUnityWrapper>();
         }
         return helper;
     }

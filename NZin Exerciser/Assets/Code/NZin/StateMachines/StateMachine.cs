@@ -14,6 +14,7 @@ public class StateMachine : Messagable {
 
 
 	public State Current			{ get; private set; }
+    public Glob Data                { get; private set; }
 
 
 	public void RegisterTransition( Transition newTransition ) {
@@ -39,7 +40,7 @@ public class StateMachine : Messagable {
 		State next;
 		if( CanTransition( Current, e, out next )) {
 			e.Consume();
-            JumpTo( next, Current.TransData );
+            JumpTo( next, Data );
 		}
 
         if( !e.Consumed ) {
@@ -48,15 +49,15 @@ public class StateMachine : Messagable {
 	}
 
 
-	public void JumpTo( State state, Glob transState ) {
+	public void JumpTo( State state, Glob glob ) {
         if( DEBUG_LOG ) {
             if( Current == null ) {
                 Debug.Log( string.Format( "StateMachine JumpingTo initial state {0}. Data={1}",
-                    state, transState
+                    state, glob
                 ));
             } else {
                 Debug.Log( string.Format( "StateMachine about to JumpTo next state. From {0} To {1}. Data={2} ",
-                    Current, state, transState
+                    Current, state, glob
                 ));
             }
         }
@@ -64,8 +65,8 @@ public class StateMachine : Messagable {
 		if( Current != null )
 			Current.OnExit();
 		Current = state;
+        Data = glob;
         if( Current != null ) {
-            Current.TransData = transState;
 			Current.OnEnter();
         }
 	}
