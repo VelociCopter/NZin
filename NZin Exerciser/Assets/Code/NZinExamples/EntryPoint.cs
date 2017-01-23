@@ -34,7 +34,7 @@ public class EntryPoint : MonoBehaviour {
     /// </summary>
     void SetupAppStructure() {
         // Make the standard single-player update loop
-        Updater upr = new OfflineUpdater();
+        Updater upr = new OfflineUnityUpdater();
         MasterThinker.Instance.Initialize( upr );
 
         // Create some shared data objects. 

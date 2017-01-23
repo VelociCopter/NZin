@@ -7,9 +7,12 @@ using System.Collections.Generic;
 namespace NZin {
 
 
-public class OfflineUpdater : Updater {
+/// <summary>
+/// An updater that signals an update once per standard Unity Update cycle.
+/// </summary>
+public class OfflineUnityUpdater : Updater {
 
-    public OfflineUpdater() {
+    public OfflineUnityUpdater() {
         FindHelper().Register( this );
     }
         
@@ -26,6 +29,9 @@ public class OfflineUpdater : Updater {
 
 
 
+/// <summary>
+/// Helper class for OfflineUnityUpdaters
+/// </summary>
 public class UpdaterUnityWrapper : MonoBehaviour {
 
     public void Register( Updater updater ) {

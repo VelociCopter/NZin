@@ -2,10 +2,7 @@
 using UnityEngine;
 
 
-
-
 namespace NZin {
-
 
 /// <summary>
 /// The global root for any pure code <--> Unity GameObject "cheat" code.
