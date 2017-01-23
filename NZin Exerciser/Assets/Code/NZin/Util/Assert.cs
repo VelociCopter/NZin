@@ -3,6 +3,7 @@ using System.Collections;
 
 
 namespace NZin {
+
 public class Assert {
 
 
@@ -37,4 +38,5 @@ public class Assert {
 
 
 }
+
 }

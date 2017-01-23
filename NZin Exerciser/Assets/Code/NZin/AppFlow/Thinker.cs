@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 
-// zzz This class is next up on the scrub
+
 
 namespace NZin {
 
@@ -18,10 +18,10 @@ public interface Thinker {
 /// <summary>
 /// NOTES On IDs:
 ///     -All thinkers need to implement their TId (Thinker ID)
-///     -TIds must be unique. It is the responsibility of the game to ensure that for Entities & Stuff
-///     -TIds should be > 0 to avoid collisions with SYSTEM IDs
+///     -TIds must be unique. It is the responsibility of the game to ensure that for Entities & Stuff.
+///     -TIds should be > 0 to avoid collisions with SYSTEM IDs.
 ///     -SYSTEM IDs (which are still TIds) are assumed to be any ID < 0
-///     -Systems (like managers) can call the NextSystemId() fnc to get the next available SYSTEM ID
+///     -Systems (like managers) can call the NextSystemId() fnc to get the next available SYSTEM ID.
 /// </summary>
 public class MasterThinker : Singleton<MasterThinker> {
 
@@ -31,11 +31,16 @@ public class MasterThinker : Singleton<MasterThinker> {
         }
     }
 
-    public void Init( Updater upr ) {
-        updater = upr;
 
+    public void Initialize( Updater upr ) {
+        updater = upr;
         updater.Updated += Update;
-        // zzzLo clear handler
+    }
+    public void Terminate() {
+        ClearRegistry();
+
+        updater.Updated -= Update;
+        updater = null;
     }
 
 
@@ -51,10 +56,12 @@ public class MasterThinker : Singleton<MasterThinker> {
         thinkersWaitingToBeRemoved.Clear();
     }
 
+
     public long NextSystemId() {
         return nextSystemId--;
     }
     static long nextSystemId = -1;
+
 
 
     void Update() {

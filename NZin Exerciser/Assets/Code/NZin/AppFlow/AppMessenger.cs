@@ -10,7 +10,7 @@ namespace NZin {
 /// Then the other "standard" receivers only receive a message if it is addressed to them.
 /// </summary>
 public class AppMessenger : Singleton<AppMessenger>, Messagable {
-    public const bool DEBUG_LOG = true;
+    public static bool DEBUG_LOG = true;
 #pragma warning disable 162
 
 
@@ -22,7 +22,7 @@ public class AppMessenger : Singleton<AppMessenger>, Messagable {
             receiver.HandleMessage( msg );
         }
 
-        if( !msg.Consumed ) {
+        if( !msg.IsConsumed ) {
             var address = msg.ReceiverId;
             if( idReceivers.ContainsKey( address )) {
                 idReceivers[ address ].HandleMessage( msg );
@@ -39,6 +39,10 @@ public class AppMessenger : Singleton<AppMessenger>, Messagable {
     }
     public void RegisterUnconditionalReceiver( Messagable receiver ) {
         unconditionalReceivers.Add( receiver );
+    }
+    public void ClearReceivers() {
+        idReceivers.Clear();
+        unconditionalReceivers.Clear();
     }
 
 

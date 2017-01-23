@@ -43,7 +43,7 @@ public class StateMachine : Messagable {
             JumpTo( next, Data );
 		}
 
-        if( !e.Consumed ) {
+        if( !e.IsConsumed ) {
             Current.HandleMessage( e );
         }
 	}
