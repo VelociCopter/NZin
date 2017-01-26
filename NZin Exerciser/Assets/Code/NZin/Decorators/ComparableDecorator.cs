@@ -1,12 +1,15 @@
-﻿using UnityEngine;
-using System;
-using System.Collections.Generic;
+﻿using System;
 
 
-// zzz resume scrub from here
 
-// zzz should this instead be a base?? Maybe not
+// zzz should this instead be a base?? Maybe not...
 
+/// <summary>
+/// You will almost always want one of these in your Decorator chains. See the "base" Entity, as it uses this decorator.
+/// It allows any piece of a decorator chain to be matched against the whole. EG if you have 2 "sub" decorator pieces in
+///		the same chain, you want to be able to know if they represent the same decorated thing. This class exposes a special
+///		ID that allows for such comparisons.
+/// </summary>
 public class ComparableDecorator<T> : Decorator<T>, Decoratable, IEquatable<ComparableDecorator<T>> where T : Decoratable {
 
 
@@ -15,9 +18,9 @@ public class ComparableDecorator<T> : Decorator<T>, Decoratable, IEquatable<Comp
     /// ambigious as to whether MyDecorator.CId refers to the "whole chain" or just that individual Decorator.
     /// This property is intended to be used for logical equivalence between 2 (non-homogenous) decorators that
     /// are decorated with Comparables. The correct usage is:
-    /// MyDecorator.Decorator<ComparableDecorator>().CId
+    /// MyDecorator.Decorator<ComparableDecorator>().CId	// <-- this is the correct ID for the "whole thing"
     /// --NOT--
-    /// MyDecorator.CId   // <-- this will refer to the single Decorator component
+    /// MyDecorator.CId   // <-- this only refers to the single Decorator component
     /// </summary>
     public long CId   { get {
             return id;
@@ -31,6 +34,7 @@ public class ComparableDecorator<T> : Decorator<T>, Decoratable, IEquatable<Comp
 
 
 
+	#region Comparable Implementation
     public override bool Equals( object that ) {
         return Equals( that as Decorator<T> );
     }
@@ -59,11 +63,11 @@ public class ComparableDecorator<T> : Decorator<T>, Decoratable, IEquatable<Comp
 			return a.CId == b.CId;
         }
 	}
-
 	
 	public override int GetHashCode() {
 		return (int)CId;
 	}
+	#endregion
 	
 	
     public override string Print( int crumbs=0 ) {
