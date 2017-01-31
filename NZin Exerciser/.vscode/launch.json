@@ -6,6 +6,28 @@
 			"type": "unity",
 			"request": "launch"
 		},
+        {
+            "name": "Unit Tests",
+            "type": "extensionHost",
+            "request": "launch",
+            "runtimeExecutable": "${execPath}",
+            "args": ["--extensionDevelopmentPath=${workspaceRoot}/vscode-unit-testing", "--extensionTestsPath=${workspaceRoot}/vscode-unit-testing/out/test" ],
+            "stopOnEntry": false,
+            "sourceMaps": true,
+            "outFiles": [ "${workspaceRoot}/out/test/**/*.js" ],
+            "preLaunchTask": "npm"
+        },
+		{
+            "name": "Launch Temp Tests",
+            "type": "extensionHost",
+            "request": "launch",
+            "runtimeExecutable": "${execPath}",
+            "args": ["--extensionDevelopmentPath=${workspaceRoot}/tempextension", "--extensionTestsPath=${workspaceRoot}/tempextension/out/test" ],
+            "stopOnEntry": false,
+            "sourceMaps": true,
+            "outFiles": [ "${workspaceRoot}/tempextension/out/test/**/*.js" ],
+            "preLaunchTask": "npm"
+        },
 		{
 			"name": "Windows Player",
 			"type": "unity",
