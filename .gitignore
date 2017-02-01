@@ -28,3 +28,6 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+project.lock.json
+**/obj/**
+**/bin/**
