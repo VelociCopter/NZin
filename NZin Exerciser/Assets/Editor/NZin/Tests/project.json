@@ -1,3 +1,5 @@
+/* Think I need this to work to get a unit-testable DLL out of one of my modules
+
 {
     "version": "1.1.0-*",
 
@@ -22,3 +24,6 @@
         }
     }
 }
+
+*/
+{}

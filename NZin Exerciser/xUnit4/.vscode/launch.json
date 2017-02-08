@@ -21,7 +21,7 @@
             "preLaunchTask": "build",
             //"program": "${workspaceRoot}/bin/Debug/<target-framework>/<project-name.dll>",
             "program": "${workspaceRoot}/bin/Debug/netcoreapp1.1/xUnit4.dll",
-            "args": [],
+            "args": ["${workspaceRoot}/.."],
             "cwd": "${workspaceRoot}/..",
             "stopAtEntry": false,
             "externalConsole": false,

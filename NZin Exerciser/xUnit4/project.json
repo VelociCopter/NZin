@@ -7,8 +7,8 @@
   "dependencies": {
     "System.Runtime.Serialization.Primitives": "4.3.0",
 //    "xunit": "2.1.0",
-//    "dotnet-test-xunit": "1.0.0-*",
-    "NETStandard.Library": "1.0.0-rc2-23811",
+    "dotnet-test-xunit": "1.0.0-*",
+    "NETStandard.Library": "1.5.*",
     "NUnit": "3.2.0",
     "NUnit.Runners": "3.2.0",
     "NUnitLite": "3.2.0"

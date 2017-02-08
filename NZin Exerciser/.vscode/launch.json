@@ -7,19 +7,6 @@
 			"request": "launch"
 		},
 		{
-            "name": "Unity NUnit Tests",
-            "type": "coreclr",
-            "request": "launch",
-            "preLaunchTask": "build",
-            //"program": "${workspaceRoot}/bin/Debug/<target-framework>/<project-name.dll>",
-            "program": "${workspaceRoot}/xUnit4/bin/Debug/netcoreapp1.1/xUnit4.dll",
-            "args": ["/Users/august/GameProjects/NZin/NZin Exerciser/Assets/Editor/NZin/Tests/TestDecorators.cs"],
-            "cwd": "${workspaceRoot}",
-            "stopAtEntry": false,
-            "externalConsole": false,
-            "internalConsoleOptions": "openOnSessionStart"
-        },
-		{
 			"name": "Windows Player",
 			"type": "unity",
 			"request": "launch"

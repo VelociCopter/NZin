@@ -6,7 +6,7 @@ using NUnit.Framework;
 
 
 
-[TestFixture, Timeout(1000)]
+[TestFixture]
 public class TestBugFixes {
 
 

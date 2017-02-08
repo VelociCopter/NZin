@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Reflection;
-using NUnit;
 using NUnit.Common;
-using NUnit.Framework;
 using NUnitLite;
 
 
