@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="0" testcasecount="2" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0" result="Failed" portable-engine-version="3.3.0.0" start-time="2017-02-09 18:10:14Z" end-time="2017-02-09 18:10:14Z" duration="0.219777">
+  <test-run id="0" testcasecount="2" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0" result="Failed" portable-engine-version="3.3.0.0" start-time="2017-02-09 18:10:14Z" end-time="2017-02-09 18:10:14Z" duration="0.097771">
+    <test-suite type="Assembly" id="1003" name="NUnit3_v2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" fullname="NUnit3_v2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2017-02-09 18:10:14Z" end-time="2017-02-09 18:10:14Z" duration="0.074523" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <settings>
+        <setting name="WorkDirectory" value="/Users/august/GameProjects/NZin/NZin Exerciser/NUnit3_v2" />
+      </settings>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1004" name="Tests" fullname="Tests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2017-02-09 18:10:14Z" end-time="2017-02-09 18:10:14Z" duration="0.067264" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="Tests" fullname="Tests.Tests" classname="Tests.Tests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2017-02-09 18:10:14Z" end-time="2017-02-09 18:10:14Z" duration="0.063069" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1001" name="Test1" fullname="Tests.Tests.Test1" methodname="Test1" classname="Tests.Tests" runstate="Runnable" seed="1898787048" result="Passed" start-time="2017-02-09 18:10:14Z" end-time="2017-02-09 18:10:14Z" duration="0.022345" asserts="0">
+            <reason>
+              <message><![CDATA[]]></message>
+            </reason>
+          </test-case>
+          <test-case id="1002" name="Test2" fullname="Tests.Tests.Test2" methodname="Test2" classname="Tests.Tests" runstate="Runnable" seed="645907825" result="Failed" start-time="2017-02-09 18:10:14Z" end-time="2017-02-09 18:10:14Z" duration="0.000920" asserts="0">
+            <failure>
+              <message><![CDATA[]]></message>
+              <stack-trace><![CDATA[at Tests.Tests.Test2() in /Users/august/GameProjects/NZin/NZin Exerciser/NUnit3_v2/tests/SampleNUnitTest.cs:line 18
+]]></stack-trace>
+            </failure>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-run>
+</test-run>
