@@ -1,29 +1,35 @@
-/* Think I need this to work to get a unit-testable DLL out of one of my modules
-
 {
-    "version": "1.1.0-*",
+  "name": "NZinUnitTests",
+  "displayName": "NZinUnitTests",
 
-    "dependencies": {
-        "NUnit": "3.4.0",
-        "dotnet-test-nunit": "3.4.0-beta-1"
-    },
-    "testRunner": "nunit",
+  "version": "1.0.0-*",
+  "buildOptions": {
+    "debugType": "portable",
+    "emitEntryPoint": true
+  },
 
-    "frameworks": {
-        "netcoreapp1.0": {
-            "imports": [
-                "netcoreapp1.0",
-                "portable-net45+win8"
-            ],
-            "dependencies": {
-                "Microsoft.NETCore.App": {
-                    "version": "1.0.0-*",
-                    "type": "platform"
-                }
-            }
+  "frameworks": {
+
+      "netcoreapp1.1": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.1.0"
         }
+      },
+      "imports": [
+        "dotnet5.4",
+        "portable-net451+win8"
+      ]
     }
-}
+  },
 
-*/
-{}
+
+  "dependencies": {
+      "NUnit": "3.4.0",
+      "dotnet-test-nunit": "3.4.0-beta-3"
+  },
+  
+  "testRunner": "nunit"
+
+}
