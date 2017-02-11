@@ -10,6 +10,13 @@
 
   "frameworks": {
 
+    "UnityEngine": {
+        "bin": {
+            "assembly": "lib/UnityEngine.dll"
+        }
+    },
+    
+
     "netcoreapp1.1": {
       "dependencies": {
         "Microsoft.NETCore.App": {

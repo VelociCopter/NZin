@@ -10,6 +10,11 @@ namespace NUnitTesting.Test
         public void Passing() {
             NUnit.Framework.Assert.Pass();
         }
+
+		[Test]
+		public void Failing() {
+			NUnit.Framework.Assert.Fail();
+		}
         
     }
 
@@ -26,6 +31,13 @@ namespace NUnitTesting.Test
             Decorator<Base> test;
             NUnit.Framework.Assert.Pass();
         }
+
+		[Test]
+		public void SimpleFail()
+		{
+			Decorator<Base> test;
+			NUnit.Framework.Assert.Fail();
+		}
     }
 
 }
