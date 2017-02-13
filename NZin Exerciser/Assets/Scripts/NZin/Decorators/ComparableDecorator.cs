@@ -28,6 +28,10 @@ public class ComparableDecorator<T> : Decorator<T>, Decoratable, IEquatable<Comp
     }
 
 
+
+	public ComparableDecorator()
+		:base() {
+	}
     public ComparableDecorator( Decorator<T> toDecorate )
         :base( toDecorate ) {
     }

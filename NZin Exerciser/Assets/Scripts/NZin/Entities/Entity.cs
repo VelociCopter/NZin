@@ -12,16 +12,16 @@ public interface EntityDecoratable : Decoratable {
 /// <summary>
 /// A simple entity. Provides no function other than a starting point for entity chains (if they want to refer to
 /// </summary>
-public class EntityCore : EntityDecoratable {
+public class EmptyEntityCore : EntityDecoratable { // zzz kill this when I can
     public override string ToString() {
         return "[core]";
-    } 
+    }
 }
 
 /// <summary>
 /// USAGE: Provide some extra state or behavior to an entity chain by decorating it
 /// </summary>
-public class Entity : ComparableDecorator<EntityCore>, EntityDecoratable {
+public class Entity : ComparableDecorator<EmptyEntityCore>, EntityDecoratable {
 
 
     // This is a hackish extension of Comparable IDs
@@ -35,9 +35,10 @@ public class Entity : ComparableDecorator<EntityCore>, EntityDecoratable {
     public Entity( Entity decoratee )
         :base( decoratee ) {
     }
-    public Entity()
-        :base( new Decorator<EntityCore>( new EntityCore() )) {
-    }
+
+	public Entity()
+		:base() {
+	}
 
     public override bool Equals( System.Object o ) {
         return Equals( o as Entity );

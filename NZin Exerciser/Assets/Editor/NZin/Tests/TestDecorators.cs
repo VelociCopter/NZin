@@ -6,28 +6,32 @@ using NUnit.Framework;
 
 
 
+/// <summary>
+/// Testing out general decorator capabilities
+/// For the packaged "Entity" decorator chain, see the TestEntities tests
+/// </summary>
 [TestFixture, Timeout(1000)]
 public class TestDecorators {
 
 
     #region Tester classes
-    class Base : Decoratable {
+    class Base : Decoratable { // zzz kill
     }
-    class TypeA : Decorator<Base>, Decoratable {
-        public TypeA( Base toDecorate ) : base( toDecorate ) {
-        }
-        public TypeA( Decorator<Base> toDecorate ) : base( toDecorate ) {
+    class TypeA : Decorator<Decoratable>, Decoratable {
+		public TypeA() {
+		}
+        public TypeA( Decorator<Decoratable> toDecorate ) : base( toDecorate ) {
         }
     }
-    class TypeB : Decorator<Base>, Decoratable {
-        public TypeB( Decorator<Base> toDecorate ) : base( toDecorate ) {
+    class TypeB : Decorator<Decoratable>, Decoratable {
+        public TypeB( Decorator<Decoratable> toDecorate ) : base( toDecorate ) {
         }
     }
     #endregion
 
     #region Helper functions
-    Decorator<Base> MakeDoubleDecorator() {
-        Decorator<Base> dec = new TypeA( new Base( ));
+    Decorator<Decoratable> MakeDoubleDecorator() {
+		Decorator<Decoratable> dec = new TypeA();
         dec = new TypeB( dec );
         return dec;
     }
@@ -37,7 +41,7 @@ public class TestDecorators {
     #region Tests
     [Test]
     public void Single() {
-        Decorator<Base> dec = new TypeA( new Base( ));
+        Decorator<Decoratable> dec = new TypeA();
 
         Assert.That( dec.HasDecoration<TypeA>() );
     }
@@ -96,7 +100,7 @@ public class TestDecorators {
 
     [Test]
     public void Empty() {
-        Decorator<Base> dec = new TypeA( new Base( ));
+        Decorator<Decoratable> dec = new TypeA();
         TypeA decA = dec.Decoration<TypeA>();
 
         var removed = dec.RemoveDecoration<TypeA>();
@@ -108,7 +112,7 @@ public class TestDecorators {
 
     [Test]
     public void RemoveInvalid() {
-        Decorator<Base> dec = new TypeA( new Base( ));
+        Decorator<Decoratable> dec = new TypeA();
 
         var excepted = false;
         try {

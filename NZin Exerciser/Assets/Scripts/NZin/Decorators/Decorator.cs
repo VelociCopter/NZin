@@ -4,23 +4,17 @@ using System.Collections.Generic;
 using NZin;
 
 
-/* NOTES FOR FUTURE IMPROVEMENT:
- * 
- * -Lose the "Core" part of this pattern?. The "inner-most" decorator can just have nothing that it decorates.
- */ 
 
 public class Decorator<T> where T : Decoratable {
 
 
-    public Decorator( T core ) {
-        this.Core = core;
-        Clean();
-    }
+	public Decorator() {
+		Clean();
+	}
 	public Decorator( Decorator<T> toDecorate ) {
         Assert.That( toDecorate != null, "Cannot decorate null." );
 
-        Core = toDecorate.Core;
-        head = toDecorate.head;
+		head = toDecorate.head;
 
 		AddThisTypeToMap( toDecorate );
 	}
@@ -93,7 +87,6 @@ public class Decorator<T> where T : Decoratable {
     }
 
 
-    public T Core   { get; private set; }
 
     protected Decorator<T> Head { get { return head; } }
 
