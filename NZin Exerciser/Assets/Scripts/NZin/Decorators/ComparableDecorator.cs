@@ -2,7 +2,6 @@
 
 
 
-// zzz should this instead be a base?? Maybe not...
 
 /// <summary>
 /// You will almost always want one of these in your Decorator chains. See the "base" Entity, as it uses this decorator.

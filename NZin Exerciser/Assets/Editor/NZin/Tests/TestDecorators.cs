@@ -15,8 +15,6 @@ public class TestDecorators {
 
 
     #region Tester classes
-    class Base : Decoratable { // zzz kill
-    }
     class TypeA : Decorator<Decoratable>, Decoratable {
 		public TypeA() {
 		}

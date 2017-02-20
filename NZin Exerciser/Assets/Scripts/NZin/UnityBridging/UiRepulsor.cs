@@ -3,6 +3,7 @@ using UnityEngine;
 using NZin;
 
 
+// zzz kill this class. Redo something like it (but better done) later if desired.
 public class UiRepulsor : MonoBehaviour {
 
     #region Inspector

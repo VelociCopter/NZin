@@ -20,7 +20,6 @@ public class TestEntities {
 		Entity a = new EdA();
 		Entity b = new EdB( a );
 
-		//var zzz = b.Decoration<Entity>();
 		Assert.That( a == b );
 	}
 

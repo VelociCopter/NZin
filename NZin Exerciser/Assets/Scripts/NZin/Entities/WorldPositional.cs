@@ -38,13 +38,7 @@ public class WorldPositional : Entity {
             return tracker.WorldPosition;
         }
     }
-    /* zzz
-    public Vector3 LastWorldVelocity { get {
-            return lastWorldPosition - WorldPosition;
-        }
-    }
-    Vector3 lastWorldPosition = Vector3.zero;
-    */
+
 
 
     void OnPositionTrackerMoved( Vector3 v ) {

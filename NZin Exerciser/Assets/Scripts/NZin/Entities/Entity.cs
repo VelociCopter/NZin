@@ -10,14 +10,8 @@ namespace NZin {
 public interface EntityDecoratable : Decoratable {
 }
 
-/// <summary>
-/// A simple entity. Provides no function other than a starting point for entity chains (if they want to refer to
-/// </summary>
-public class EmptyEntityCore : EntityDecoratable { // zzz kill this when I can
-    public override string ToString() {
-        return "[core]";
-    }
-}
+
+
 
 /// <summary>
 /// USAGE: Provide some extra state or behavior to an entity chain by decorating it
@@ -75,11 +69,6 @@ public class Entity : ComparableDecorator<EntityDecoratable>, EntityDecoratable 
     }
     public virtual bool Equals( Entity that ) {
         if( that != null ) {
-/* zzz
-            var thisE = this.Decoration<Entity>();
-            var thatE = that.Decoration<Entity>();
-            return thisE.Id == thatE.Id;
-*/
 			return this.Id == that.Id;
         }
         return false;
