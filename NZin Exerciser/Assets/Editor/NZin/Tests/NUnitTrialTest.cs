@@ -28,7 +28,6 @@ namespace NUnitTesting.Test
 
         [Test]
         public void SimpleTest() {
-            Decorator<Base> test;
             NUnit.Framework.Assert.Pass();
         }
 

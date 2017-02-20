@@ -1,6 +1,6 @@
 ﻿
 
-namespace NZin.Entities {
+namespace NZin {
 
 
 public class LockableInput : Entity, Thinker {
@@ -13,12 +13,12 @@ public class LockableInput : Entity, Thinker {
     public int Flags        { get; private set; }
 
     /// <summary>
-    /// Use the Component ID for the Thinker ID. 
-    /// Can't use Entity ID because different decoration thinkers attached to the same entity 
-    ///     would return the same value.
+	/// This needs to be unique per thinker, and there can be n thinkers : 1 entity
     /// </summary>
     /// <value>The T identifier.</value>
     public long TId { get {
+				// Return the CId to accomplish a unique per-thinker ID. 
+				// TId would collide with different thinkers on the same entity.
             return this.CId;
         } 
     }
@@ -32,7 +32,7 @@ public class LockableInput : Entity, Thinker {
         remainingTicks = expireAfterTicks;
         if( remainingTicks != NEVER_EXPIRE && remainingTicks >= 0 ) {
             MasterThinker.Instance.Register( this );
-            Decoration<Disposable>().Disposed += Destroy;
+            decoratee.Disposed += Destroy;
         }
     }
     void Destroy( Entity e ) {

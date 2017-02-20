@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Collections;
-using NZin.Entities;
+using NZin;
 
 
 [ CustomEditor( typeof( CompoundText ))]
@@ -19,10 +19,7 @@ public class CompoundTextInspector : Editor {
                 string.Format( "Model: e_{0}", entity.Id )
             );
 
-            Disposable disposable;
-            if( entity.HasDecoration<Disposable>( out disposable )) {
-                EditorGUILayout.LabelField( string.Format( "Disposed? {0}", disposable.IsDisposed ));
-            }
+            EditorGUILayout.LabelField( string.Format( "Disposed? {0}", entity.IsDisposed ));
         }
     }
 

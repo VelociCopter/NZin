@@ -1,7 +1,8 @@
-﻿
+﻿using System;
 
 
-namespace NZin.Entities {
+
+namespace NZin {
 
 /// <summary>
 /// A symbolic declaration of intent to decorate an Entity
@@ -21,24 +22,43 @@ public class EmptyEntityCore : EntityDecoratable { // zzz kill this when I can
 /// <summary>
 /// USAGE: Provide some extra state or behavior to an entity chain by decorating it
 /// </summary>
-public class Entity : ComparableDecorator<EmptyEntityCore>, EntityDecoratable {
+public class Entity : ComparableDecorator<EntityDecoratable>, EntityDecoratable {
 
 
-    // This is a hackish extension of Comparable IDs
+    // This is a somewhat hackish extension of Comparable IDs
     // HACK {
     public long Id   { get {
             return Decoration<Entity>().CId;
         }
     }
+    // This is a somewhat hackish extension of Disposable behavior
+    public event Action<Entity> Disposed;
+    public bool IsDisposed { get { return Decoration<Disposable<EntityDecoratable>>().IsDisposed; } }
+    public void Dispose() {
+        Decoration<Disposable<EntityDecoratable>>().Dispose();
+    }
     // } HACK
 
     public Entity( Entity decoratee )
         :base( decoratee ) {
+		Ctor();
     }
-
 	public Entity()
 		:base() {
 	}
+	private void Ctor() {
+		// Add disposable behavor, since that should be implemented by (basically(?)) all entities
+        var disposable = new Disposable<EntityDecoratable>( this );
+        disposable.Disposed += InnerDisposed;
+	}
+    void InnerDisposed( Disposable<EntityDecoratable> disposable ) {
+        if( this.Disposed != null ) {
+            Disposed( this );
+        }
+    }
+
+
+
 
     public override bool Equals( System.Object o ) {
         return Equals( o as Entity );
@@ -72,10 +92,11 @@ public class Entity : ComparableDecorator<EmptyEntityCore>, EntityDecoratable {
     }
      
 
+
     /// <summary>
     /// Use PrettyPrint() if you want to see the entire chain
     /// </summary>
-    /// <returns>A <see cref="System.String"/> that represents the current <see cref="NZin.Entities.Entity"/>.</returns>
+    /// <returns>A <see cref="System.String"/> that represents the current <see cref="NZin.Entity"/>.</returns>
     public override string ToString() {
         return string.Format( "[ Entity_{0} ]->[...]", Id );
     }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using NZin.Entities;
+using NZin;
 
 
 namespace NZin {

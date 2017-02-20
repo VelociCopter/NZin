@@ -4,7 +4,8 @@ using System.Collections;
 
 namespace NZin {
 
-public class Assert {
+// NOTE: I would call this class "Assert", but that conflicts with NUnit.Framwork.Assert which makes it annoying to use in tests
+public class Assertion {
 
 
     public static void That( bool condition, string message="Assert failed." ) {

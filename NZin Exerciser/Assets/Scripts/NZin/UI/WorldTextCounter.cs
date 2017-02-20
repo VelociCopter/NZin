@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using NZin.Entities;
+using NZin;
 
 
 public class WorldTextCounter : Entity {

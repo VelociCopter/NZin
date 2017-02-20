@@ -2,33 +2,38 @@
 using UnityEngine;
 
 
-namespace NZin.Entities {
+namespace NZin {
 
-// zzz td: This should be a part of proper Entities, just like Comparable.
-// Or mabye a type of Base that Entities use
 
 /// <summary>
 /// A signal for any entity decoration to declare the whole chain should dispose of itself.
 /// Due to linking issues, this decoration should be added as soon as possible so further decorations have a chance to subscribe.
 /// </summary>
-public class Disposable : Entity {
+public class Disposable<T> : Decorator<T>, Decoratable where T : Decoratable {
     public const bool DEBUG_LOG = true;
 
 
-    public event Action<Entity> Disposed;
+	public event Action<Disposable<T>> Disposed;
 
     public bool IsDisposed { get; private set; }
 
 
-    public Disposable( Entity decoratee )
-        :base( decoratee ) {
-        IsDisposed = false;
-    }
+	public Disposable()
+		:base() {
+		Ctor();
+	}
+	public Disposable( Decorator<T> toDecorate )
+		:base( toDecorate ) {
+		Ctor();
+	}
+	private void Ctor() {
+		IsDisposed = false;
+	}
 
 
     public void Dispose() {
         if( DEBUG_LOG ) 
-            Debug.Log( "Disposing "+Id+"\n"+this.PrettyPrint() );
+            Debug.Log( "Disposing\n"+this.PrettyPrint() );
             
         bool wasDisposed = IsDisposed;
         IsDisposed = true;

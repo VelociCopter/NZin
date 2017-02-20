@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using NZin.Entities;
+using NZin;
 
 
 [RequireComponent( typeof(UnityEngine.UI.Text ))]

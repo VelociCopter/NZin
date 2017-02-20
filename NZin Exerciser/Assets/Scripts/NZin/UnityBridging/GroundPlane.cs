@@ -26,7 +26,7 @@ public class GroundPlane : GameObjectProxy, GameObjectProxyReceiver {
 
         // TODO: Look for the value in the inspector, but set the default value in the inspector to the default
         // HACK: for now just override it
-        Assert.That( Priority == 0 || Priority == 10, "You are breaking some hack assumptions" );
+        Assertion.That( Priority == 0 || Priority == 10, "You are breaking some hack assumptions" );
         Priority = GROUND_PROXY_PRIORITY;
     }
     public static GroundPlane FindMe() {

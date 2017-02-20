@@ -38,7 +38,7 @@ public class Message {
         }
     }
 	public void Consume() {
-        Assert.That( !IsConsumable || !IsConsumed, "Already consumed this consumable message, or it is (wrongly?) consumable." );
+        Assertion.That( !IsConsumable || !IsConsumed, "Already consumed this consumable message, or it is (wrongly?) consumable." );
 		consumed = true;
 	}
     bool consumed = false;

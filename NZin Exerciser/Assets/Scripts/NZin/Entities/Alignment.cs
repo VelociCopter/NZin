@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 
 
-namespace NZin.Entities {
+namespace NZin {
 
 
 public class Aligned : Entity {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 
-namespace NZin.Entities {
+namespace NZin {
     
 /// <summary>
 /// An entity that has a world position. This may be view only.
@@ -19,7 +19,7 @@ public class WorldPositional : Entity {
     public WorldPositional( Entity entity )
         :base( entity ) {
 
-        Decoration<Disposable>().Disposed += Destroy;
+        entity.Disposed += Destroy;
     }
 
 
@@ -30,7 +30,7 @@ public class WorldPositional : Entity {
 
     void Destroy( Entity e ) {
         tracker.Moved -= OnPositionTrackerMoved;
-        Decoration<Disposable>().Disposed -= Destroy;
+        Decoration<Entity>().Disposed -= Destroy;
     }
 
 

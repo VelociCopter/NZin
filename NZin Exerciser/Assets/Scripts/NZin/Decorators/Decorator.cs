@@ -12,7 +12,7 @@ public class Decorator<T> where T : Decoratable {
 		Clean();
 	}
 	public Decorator( Decorator<T> toDecorate ) {
-        Assert.That( toDecorate != null, "Cannot decorate null." );
+        Assertion.That( toDecorate != null, "Cannot decorate null." );
 
 		head = toDecorate.head;
 

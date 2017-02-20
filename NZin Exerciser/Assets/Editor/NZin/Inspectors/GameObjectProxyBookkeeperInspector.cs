@@ -2,7 +2,6 @@
 using UnityEditor;
 using System.Collections;
 using NZin;
-using NZin.Entities;
 
 
 [ CustomEditor( typeof( GameObjectProxyBookkeeper ))]
