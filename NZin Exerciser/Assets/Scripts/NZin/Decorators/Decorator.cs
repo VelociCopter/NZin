@@ -91,7 +91,7 @@ public class Decorator<T> where T : Decoratable {
     protected Decorator<T> Head { get { return head; } }
 
     Dictionary<Type,Decorator<T>> map;			// For faster lookup. Only works on the "head" Decorator!
-    Decorator<T> head;                          // Make sure each decorator knows how to get back to the head. Useful for printing, & processing
+    Decorator<T> head;                          // Make sure each decorator knows how to get back to the head. Useful for printing, comparison & processing
 
 
 

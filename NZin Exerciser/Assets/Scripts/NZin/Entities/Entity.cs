@@ -45,10 +45,20 @@ public class Entity : ComparableDecorator<EntityDecoratable>, EntityDecoratable 
     }
 	public Entity()
 		:base() {
+		Ctor();
 	}
 	private void Ctor() {
+		// Add a concrete Entity if necessary. Useful for "leaf" Entity Decorators that extend Entity
+		Entity entity;
+		if( !HasDecoration<Entity>( out entity )) {
+			entity = new Entity( this );
+		}
+
 		// Add disposable behavor, since that should be implemented by (basically(?)) all entities
-        var disposable = new Disposable<EntityDecoratable>( this );
+		Disposable<EntityDecoratable> disposable;
+		if( !HasDecoration<Disposable<EntityDecoratable>>( out disposable )) {
+	        disposable = new Disposable<EntityDecoratable>( this );
+		}
         disposable.Disposed += InnerDisposed;
 	}
     void InnerDisposed( Disposable<EntityDecoratable> disposable ) {
@@ -65,9 +75,12 @@ public class Entity : ComparableDecorator<EntityDecoratable>, EntityDecoratable 
     }
     public virtual bool Equals( Entity that ) {
         if( that != null ) {
+/* zzz
             var thisE = this.Decoration<Entity>();
             var thatE = that.Decoration<Entity>();
             return thisE.Id == thatE.Id;
+*/
+			return this.Id == that.Id;
         }
         return false;
     }

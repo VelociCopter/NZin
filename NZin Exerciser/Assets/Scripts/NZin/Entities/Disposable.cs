@@ -10,7 +10,7 @@ namespace NZin {
 /// Due to linking issues, this decoration should be added as soon as possible so further decorations have a chance to subscribe.
 /// </summary>
 public class Disposable<T> : Decorator<T>, Decoratable where T : Decoratable {
-    public const bool DEBUG_LOG = true;
+    public const bool DEBUG_LOG = false;
 
 
 	public event Action<Disposable<T>> Disposed;

@@ -17,17 +17,16 @@ public class TestEntities {
 	#region Entity Tests
 	[Test]
 	public void DisparatePartsStillCompare() {
-		Entity entity = new Entity();
-		EdA a = new EdA( entity );
-		EdB b = new EdB( a ); 
+		Entity a = new EdA();
+		Entity b = new EdB( a );
 
+		//var zzz = b.Decoration<Entity>();
 		Assert.That( a == b );
 	}
 
 	[Test]
 	public void CanStillCheckIndividualEquivalence() {
-		Entity entity = new Entity();
-		EdA a = new EdA(entity);
+		EdA a = new EdA();
 		EdB b = new EdB(a);
 
 		Assert.That(a.CId != b.CId);
@@ -43,17 +42,20 @@ public class TestEntities {
 		};
 		pure.Disposed += onDisposed;
 
+		pure.Dispose();
+
 		Assert.That( pure.IsDisposed );
 		Assert.That( didGetDisposedCall );
 	}
 
 	[Test]
-	public void FactoryEntitiesHaveDisposableBehavior() {
+	public void StandardEntitiesHaveDisposableBehavior() {
 		Entity entity = new Entity();
 		var didGetCallback = false;
 		Action<Entity> wrappedDisposedCallback = ( e ) => {
 			didGetCallback = true;
 		};
+		entity.Disposed += wrappedDisposedCallback;
 
 		entity.Dispose();
 
@@ -65,16 +67,20 @@ public class TestEntities {
 
 	#region Tester classes
 	class EdA : Entity {
-		public EdA( Entity a )
+	}
+/*
+	class EdB : ComparableDecorator<EntityDecoratable> { // ZZZ rename
+		public EdB( ComparableDecorator<EntityDecoratable> a )
 			:base( a ) {
 		}
 	}
-	class EdB : Entity {
-		public EdB( Entity b )
-			:base( b ) {
-		}
-	}
+*/
 	class PureBase : Decoratable {
+	}
+	class EdB : Entity {
+		public EdB( Entity e )
+			:base( e ) {
+		}
 	}
 	#endregion
 
