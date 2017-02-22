@@ -5,7 +5,7 @@ using NZin;
 
 
 
-public class LoadingMode : GameMode {
+public class LoadingMode : Mode {
 
 	
     public override void OnEnter() {

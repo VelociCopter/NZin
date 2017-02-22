@@ -1,11 +1,11 @@
-﻿using UnityEngine;
-using System;
-using System.Collections;
-using NZin;
+﻿
 
-namespace StateMachines {
+namespace NZin.StateMachines {
+
+
 
 	public delegate bool TransitionTestDelegate();
+
 
 
 	public class Transition {
@@ -16,7 +16,7 @@ namespace StateMachines {
 
 
 		public Transition( State from, State to, System.Type type )
-		:this( from, to, type, AlwaysPass ) {
+			:this( from, to, type, AlwaysPass ) {
 		}
 		public Transition( State from, State to, System.Type type, TransitionTestDelegate ifPasses ) {
 			From = from;
@@ -26,14 +26,18 @@ namespace StateMachines {
 		}
 
 
-		public bool TypesMatch( Message msg ) {
+
+		public bool RespondsToMessageType( Message msg ) {
 			return msg.GetType() == myType;
 		}
+
 
 
 		static bool AlwaysPass() {
 			return true;
 		}
+
+
 
 		System.Type myType;
 	}

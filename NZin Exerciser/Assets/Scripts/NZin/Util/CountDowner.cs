@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+namespace NZin {
+
+
 
 /// <summary>
 /// A bresenham-style counter
@@ -10,6 +13,10 @@ public class CountDowner {
     public float Period             { get; set; }
     public bool Paused              { get; set; }
     public bool IsReady             { get { return value <= 0; } }
+    /// <summary>
+    /// Returns the progress normalized to [0,1]
+    /// </summary>
+    /// <returns></returns>
     public float RelativeProgress   { get {
             return 1-( Mathf.Clamp01( value / Period ));
         } 
@@ -20,11 +27,13 @@ public class CountDowner {
     }
 
 
+
     public CountDowner( float period = 1f ) {
         Period = period;
         Paused = false;
         value = period;
     }
+
 
 
     /// <summary>
@@ -38,6 +47,10 @@ public class CountDowner {
     }
 
 
+    /// <summary>
+    /// Consumes one "step." 
+    /// You might want this in cases where a Value can overflow a period, or Values can accumulated post-period
+    /// </summary>
     public void Consume() {
         value += Period;
     }
@@ -53,4 +66,6 @@ public class CountDowner {
 
 
     float value = 0f;
+}
+
 }

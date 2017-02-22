@@ -1,6 +1,6 @@
 using UnityEngine;
-using UnityEngine.UI;
-using NZin;
+
+namespace NZin {
 
 
 public class WorldTextCounter : Entity {
@@ -9,6 +9,7 @@ public class WorldTextCounter : Entity {
     public delegate void UpdateInt( int value );
 
     public CompoundText Text                { get; set; }
+
 
 
     public WorldTextCounter( Entity decoratee ) 
@@ -24,7 +25,6 @@ public class WorldTextCounter : Entity {
         
 
 
-
     private static CompoundText CreateFromPrefab( string nameSuffix ) {
         if( prefab == null ) {
             prefab = (GameObject)Resources.Load( "NZin/UI/WorldCounterPrefab" );
@@ -36,5 +36,7 @@ public class WorldTextCounter : Entity {
     }
     static GameObject prefab;
 
+
+}
 
 }

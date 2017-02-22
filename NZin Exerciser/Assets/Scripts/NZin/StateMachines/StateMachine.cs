@@ -1,20 +1,20 @@
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
-using NZin;
 
 
 
-namespace StateMachines {
+namespace NZin.StateMachines {
 
 
-public class StateMachine : Messagable {
+
+public class StateMachine : Messageable {
 #pragma warning disable 162
     const bool DEBUG_LOG = false;
 
 
 	public State Current			{ get; private set; }
-    public Glob Data                { get; private set; }
+    public TransStateData Data      { get; private set; }
+
 
 
 	public void RegisterTransition( Transition newTransition ) {
@@ -30,8 +30,46 @@ public class StateMachine : Messagable {
 	}
 
 
+	public void JumpTo( State state, TransStateData data ) {
+        if( DEBUG_LOG ) {
+            if( Current == null ) {
+                Debug.Log( string.Format( "StateMachine JumpingTo initial state {0}. Data={1}",
+                    state, data
+                ));
+            } else {
+                Debug.Log( string.Format( "StateMachine about to JumpTo next state. From {0} To {1}. Data={2} ",
+                    Current, state, data
+                ));
+            }
+        }
 
-    /// <summary>
+		if( Current != null )
+			Current.OnExit();
+		Current = state;
+        Data = data;
+        if( Current != null ) {
+			Current.OnEnter();
+        }
+	}
+
+
+	public bool CanTransition( State from, Message msg, out State to ) {
+		List<Transition> nextCandidates;
+		to = null;
+		if( transitions.TryGetValue( from, out nextCandidates )) {
+			foreach( var nextCandidate in nextCandidates ) {
+				if( nextCandidate.RespondsToMessageType( msg ) && nextCandidate.TestPasses() ) {
+					to = nextCandidate.To;
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+
+
+ 	/// <summary>
     /// Examines the message to determine if any state changes are in order.
     /// After that–if the message is not yet consumed–check if the current state can handle it.
     /// </summary>
@@ -49,45 +87,10 @@ public class StateMachine : Messagable {
 	}
 
 
-	public void JumpTo( State state, Glob glob ) {
-        if( DEBUG_LOG ) {
-            if( Current == null ) {
-                Debug.Log( string.Format( "StateMachine JumpingTo initial state {0}. Data={1}",
-                    state, glob
-                ));
-            } else {
-                Debug.Log( string.Format( "StateMachine about to JumpTo next state. From {0} To {1}. Data={2} ",
-                    Current, state, glob
-                ));
-            }
-        }
-
-		if( Current != null )
-			Current.OnExit();
-		Current = state;
-        Data = glob;
-        if( Current != null ) {
-			Current.OnEnter();
-        }
-	}
-
-
-	public bool CanTransition( State from, Message msg, out State to ) {
-		List<Transition> nextCandidates;
-		to = null;
-		if( transitions.TryGetValue( from, out nextCandidates )) {
-			foreach( var nextCandidate in nextCandidates ) {
-				if( nextCandidate.TypesMatch( msg ) && nextCandidate.TestPasses() ) {
-					to = nextCandidate.To;
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-
 
 	Dictionary<State,List<Transition>> transitions = new Dictionary<State,List<Transition>>();
 }
+
+
 
 }

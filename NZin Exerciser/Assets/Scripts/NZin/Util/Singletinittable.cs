@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿namespace NZin {
+
 
 
 public class Singletinittable<T> where T : Initializable, new() {
@@ -23,4 +23,6 @@ public class Singletinittable<T> where T : Initializable, new() {
 public interface Initializable {
     void Initialize();
     bool IsInitialized { get; }
+}
+
 }

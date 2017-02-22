@@ -1,9 +1,10 @@
 ﻿
 using System;
-using UnityEngine;
+
 
 
 namespace NZin {
+
 
 
 public class Aligned : Entity {
@@ -24,6 +25,7 @@ public class Aligned : Entity {
 }
 
 
+
 public interface Agreeable {
     AlignmentMixin Alignment     { get; }
 }
@@ -31,18 +33,16 @@ public interface Agreeable {
 
 /// <summary>
 /// There are 3 dispositions towards other teams. 
-/// Perhaps counter-intuitively, these dispositions are completely separate.
-///     In other words, If you are Friendly towards Bob then you are NOT neutral towards Bob.
+/// Perhaps counter-intuitively, these dispositions are mutually exclusive.
+///     --In other words, If you are Friendly towards Bob then you are NOT neutral towards Bob.
 /// Each disposition describes threat to you & to them. Therefore there is no sub-relationship.
 /// If you are looking for levels of threat, don't compare Friendly/Hostile/Neutral towards: instead
 ///     use IsThreatenedBy? or CanHurt? 
-/// 
 /// 
 ///                 Is a threat?    Can hurt?
 ///     Friendly        x               x
 ///     Neutral         x               YES
 ///     Hostile         YES             YES
-/// 
 /// 
 /// </summary>
 public class AlignmentMixin : Agreeable, IEquatable<AlignmentMixin> {
@@ -145,7 +145,7 @@ public class AlignmentMixin : Agreeable, IEquatable<AlignmentMixin> {
     public override string ToString() {
         return string.Format( "[ AlignmentMixin: Code={0} ]", Code );
     }
-};
+}
 
 
 }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
+
+namespace NZin {
 
 
 
@@ -8,6 +9,7 @@ public class Monoton<T> : MonoBehaviour where T : MonoBehaviour {
 
     public delegate void UpdateEvent( float seconds );
     public UpdateEvent Updated;
+
 
 
 	public static T Instance { get {
@@ -20,29 +22,37 @@ public class Monoton<T> : MonoBehaviour where T : MonoBehaviour {
 	} }
 
 
-    static T FindMe() {
-        return GameObject.FindObjectOfType<T>();
-    }
-	static void Instantiate() {
-        GameObject go = new GameObject();
-        go.name = DynamicName();
-		instance = go.AddComponent<T>();
-	}
-    static string DynamicName() {
-        return "__"+typeof(T).ToString()+"__";
-    }
-
-
 
     void Start() {
         // Highlander
         var existingInstance = FindMe();
         if( existingInstance != this ) {
+            Debug.LogWarning( string.Format( "Found another Monoton like this one ({0}). Killing this one.",
+                DynamicName() 
+            ));
             GameObject.DestroyImmediate( this.gameObject );
         } else {
             DontDestroyOnLoad( this.gameObject );
         }
     }
+
+
+
+    static T FindMe() {
+        return GameObject.FindObjectOfType<T>();
+    }
+
+	static void Instantiate() {
+        GameObject go = new GameObject();
+        go.name = DynamicName();
+		instance = go.AddComponent<T>();
+	}
+
+    static string DynamicName() {
+        return "__"+typeof(T).ToString()+"_mt_";
+    }
+
+
 
     protected virtual void Initialize() { }
     protected virtual void Update() { 
@@ -50,6 +60,9 @@ public class Monoton<T> : MonoBehaviour where T : MonoBehaviour {
             Updated( Time.deltaTime );
     }
 
+
 	
 	static T instance;
+}
+
 }

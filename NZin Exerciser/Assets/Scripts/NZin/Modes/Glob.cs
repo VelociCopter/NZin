@@ -2,11 +2,18 @@
 using System.Collections;
 
 
+
+
+
 namespace NZin {
 
-public class Glob {
+public class Glob : StateMachines.TransStateData {
 
     /* TODO zzz td
+	// zzz I want to compare the different Globs from:
+	//  Minimal Strategy Game
+	// 	Flow
+	//	L. Battler
 	public SelectableEn Selected		{ get; private set; }
 	public GroundPlane Ground			{ get; private set; }
 

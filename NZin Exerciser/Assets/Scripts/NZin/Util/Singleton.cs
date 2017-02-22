@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿namespace NZin {
+
 
 
 public class Singleton<T> where T : new() {
@@ -16,4 +16,6 @@ public class Singleton<T> where T : new() {
 
 
 	static T instance;
+}
+
 }

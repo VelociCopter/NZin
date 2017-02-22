@@ -1,8 +1,9 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿
 
 
 namespace NZin {
+
+
 
 /// <summary>
 /// A fairly generic message. Used to communicate between layers of the NZin.

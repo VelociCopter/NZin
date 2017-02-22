@@ -1,23 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-
 
 namespace NZin {
 
+
+
 /// <summary>
-/// This class helps sort out all of the simultaneous input events that disparate GameObjectProxies may receive.
+/// This class helps sort out all of the simultaneous and overlapping input events that GameObjectProxies may receive.
 /// One such use is to create UI elements (that are also GameObjectProxies) that consume click events
 ///     so they don't bleed through to in-world Proxies.
 /// </summary>
 public class GameObjectProxyBookkeeper : Monoton<GameObjectProxyBookkeeper> {
+#pragma warning disable 429, 162
     public const bool DEBUG_LOG = false;
-    #pragma warning disable 429, 162
-
-    // Used by the inspector to make a log of what happened each frame
-    public bool MakeReports = false;
-    public string Report        { get; private set; }
-
 
 
     public void Poked( GameObjectProxy proxy ) {
@@ -29,6 +24,7 @@ public class GameObjectProxyBookkeeper : Monoton<GameObjectProxyBookkeeper> {
     public void Scraped( GameObjectProxy proxy ) {
         scraped.Add( proxy );
     }
+
 
     void LateUpdate() {
         var tapPositionNow = Input.mousePosition;
@@ -100,9 +96,18 @@ public class GameObjectProxyBookkeeper : Monoton<GameObjectProxyBookkeeper> {
     }
 
 
+
     List<GameObjectProxy> poked = new List<GameObjectProxy>();
     List<GameObjectProxy> released = new List<GameObjectProxy>();
     List<GameObjectProxy> scraped = new List<GameObjectProxy>();
+
+
+
+    #region Internal
+    // Set by a custom inspector to make a log of what happened each frame
+    public bool MakeReports = false;
+    public string Report        { get; private set; }
+    #endregion
 }
 
 }

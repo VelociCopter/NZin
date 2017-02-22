@@ -1,14 +1,14 @@
 ﻿using System;
-using UnityEngine;
 
 
-namespace NZin {
+namespace NZin
+{
 
-/// <summary>
-/// The global root for any pure code <--> Unity GameObject "cheat" code.
-/// This is basically a dedicated place to hang hacks or get around some Unity thing you don't want.
-/// </summary>
-public class God : Monoton<God> {
+    /// <summary>
+    /// The global root for any pure code <--> Unity GameObject "cheat" code.
+    /// This is basically a dedicated place to hang hacks or get around some Unity thing you don't want.
+    /// </summary>
+    public class God : Monoton<God> {
 
 
     /// <summary>

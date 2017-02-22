@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
-
 
 namespace NZin {
+
+
+
 public class ProgressBar : MonoBehaviour {
 
-    // Inspector {
+    #region Inspector
     public Image Filling;
     public RectTransform Backing;
-    // } Inspector
+    #endregion
+
 
 
     public Color FillColor {
@@ -21,14 +23,14 @@ public class ProgressBar : MonoBehaviour {
 
     public float Value {
         get {
-            return v;
+            return _v;
         }
         set {
-            v = value;
+            _v = value;
             ResizeGraphics();
         }
     }
-    float v;
+    float _v;
 
 
     public float Width {
@@ -40,10 +42,12 @@ public class ProgressBar : MonoBehaviour {
     }
 
 
+
     void ResizeGraphics() {
         var full = Backing.rect.width;
-        var part = v * full;
+        var part = Value * full;
         Filling.rectTransform.SetSizeWithCurrentAnchors( RectTransform.Axis.Horizontal, part );
     }
 }
+
 }

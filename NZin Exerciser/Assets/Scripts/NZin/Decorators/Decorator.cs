@@ -1,7 +1,14 @@
-using UnityEngine;
 using System;
 using System.Collections.Generic;
-using NZin;
+
+
+
+namespace NZin {
+
+
+
+public interface Decoratable {
+}
 
 
 
@@ -133,5 +140,5 @@ public class Decorator<T> where T : Decoratable {
 }
 
 
-public interface Decoratable {
+
 }

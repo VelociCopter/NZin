@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using UnityEngine;
-
-
 
 
 
 namespace NZin {
+
 
 
 public interface Thinker {

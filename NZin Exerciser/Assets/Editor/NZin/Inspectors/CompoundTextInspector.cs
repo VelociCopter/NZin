@@ -13,7 +13,7 @@ public class CompoundTextInspector : Editor {
         EditorUtility.SetDirty( target );
         CompoundText compoundText = (CompoundText)target;
 
-        var entity = compoundText.InspectorLink;
+        var entity = compoundText.DeferInspection;
         if( entity != null ) {
             EditorGUILayout.LabelField( 
                 string.Format( "Model: e_{0}", entity.Id )

@@ -2,10 +2,17 @@
 using System.Collections;
 
 
+
 namespace NZin {
+
+
+
 public class GroundedModeMixin  {
 
-    /* TODO:
+    /* TODO: Is this class still relevant? Seems kind of obsolete. Keep it around until the Exercisor has demonstrated:
+			// 1) a Mode that has a mouse-clickable ground
+			// 2) draw GL lines on the ground
+
     public Vector3 CameraPositionAtEnter            { get; private set; }
 
 

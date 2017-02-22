@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 
+namespace NZin {
+
+
+
 public class LineSegment {
 
     public Vector3 Start    { get; private set; }
@@ -14,4 +18,7 @@ public class LineSegment {
         Color = color;
         Frames = frames;
     }
+    
+}
+
 }

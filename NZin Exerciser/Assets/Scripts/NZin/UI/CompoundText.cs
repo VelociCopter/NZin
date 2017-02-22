@@ -1,23 +1,39 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
-using NZin;
 
 
+
+namespace NZin {
+
+
+/// <summary>
+/// Use this for shadowing, outlining, or other text effects
+/// </summary>
 [RequireComponent( typeof(UnityEngine.UI.Text ))]
 public class CompoundText : MonoBehaviour {
 
 	
-    // To be set in the inspector
+    #region Inspector
+
+    /// <summary>
+    /// The DaisyChained CompoundText will update its text value every time the original one does
+    /// </summary>
     public CompoundText DaisyChain;
-   
-    public delegate void TextUpdate( string text );
-    public event TextUpdate TextChanged;
 
     /// <summary>
     /// Assign an entity to this value and the CompoundText custom UnityEditor-Inspector will try to populate it
+    /// In other words, when selecting this CompoundText element at runtime, the custom Inspector will show the Entity, not this UI Element
     /// </summary>
-    public Entity InspectorLink;
+    public Entity DeferInspection;
+
+    #endregion
+
+
+   
+    public delegate void TextUpdate( string text );
+
+    public event TextUpdate TextChanged;
+
 
 
     void Awake() {
@@ -25,7 +41,7 @@ public class CompoundText : MonoBehaviour {
     }
 
 
-    private string _text;
+
     public string Text {
         set {
             _text = value;
@@ -45,7 +61,13 @@ public class CompoundText : MonoBehaviour {
             return _text;
         }
     }
+    private string _text;
+
 
 
     Text primaryTextBox;
+}
+
+
+
 }

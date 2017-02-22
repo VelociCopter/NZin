@@ -6,12 +6,12 @@ namespace NZin {
     
 /// <summary>
 /// The layer that takes messages from "anywhere" and routes them to the appropriate receivers.
-/// There are likely many "unconditional recievers" (like the Game Mode or HUD) that get first dibs at all messages.
+/// There are likely many "unconditional recievers" (like the Game Mode or HUD) that get first dibs at ALL messages (regardless of recipient ID).
 /// Then the other "standard" receivers only receive a message if it is addressed to them.
 /// </summary>
-public class AppMessenger : Singleton<AppMessenger>, Messagable {
-    public static bool DEBUG_LOG = true;
+public class AppMessenger : Singleton<AppMessenger>, Messageable {
 #pragma warning disable 162
+    public static bool DEBUG_LOG = true;
 
 
     public void HandleMessage( Message msg ) {
@@ -37,7 +37,7 @@ public class AppMessenger : Singleton<AppMessenger>, Messagable {
     public void DeregisterIdReceiver( Receivable receiver ) {
         idReceivers.Remove( receiver.RId );
     }
-    public void RegisterUnconditionalReceiver( Messagable receiver ) {
+	public void RegisterUnconditionalReceiver( Messageable receiver ) {
         unconditionalReceivers.Add( receiver );
     }
     public void ClearReceivers() {
@@ -46,7 +46,7 @@ public class AppMessenger : Singleton<AppMessenger>, Messagable {
     }
 
 
-    List<Messagable> unconditionalReceivers = new List<Messagable>();
+	List<Messageable> unconditionalReceivers = new List<Messageable>();
     Dictionary<long,Receivable> idReceivers = new Dictionary<long,Receivable>();
 }
 

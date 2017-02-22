@@ -2,6 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 
+namespace NZin {
+
+
+// TODO: Exercise this camera! Refactor this class as needed while exercising.
+
 
 /// <summary>
 /// A class that wraps around Camera.main to provide typical top-down functionality
@@ -181,5 +186,7 @@ public class ZinCam : Monoton<ZinCam> { // TODO: This might not want to be a Mon
     #endregion
 
 
+
+}
 
 }

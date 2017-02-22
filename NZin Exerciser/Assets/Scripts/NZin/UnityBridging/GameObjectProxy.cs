@@ -1,20 +1,31 @@
 ﻿using UnityEngine;
 using System;
 
-
-
 namespace NZin {
 
+
+
 /// <summary>
-/// A game object that relays clicking and stuff to anyone that wants to listen
+/// A GameObject that receives touches & collisions from a GameObjectProxy
+/// </summary>
+public interface GameObjectProxyReceiver {
+	void TouchDown( Vector3 screenPosition );
+	void TouchUp( Vector3 screenPosition );
+	void TouchDrag( Vector3 start, Vector3 now );
+    void CollisionEnter( Collision collision );
+}
+
+
+
+/// <summary>
+/// A GameObject that relays clicking and stuff to the assigned GameObjectProxyReceiver
 /// </summary>
 public class GameObjectProxy : MonoBehaviour, IComparable {
     const int DEFAULT_PRIORITY = 0;
 
-    public Vector3? TapStartedAt                { get; set; }
-	public GameObjectProxyReceiver Receiver		{ get; set; }
+    
+    #region Inspector
 
-    #region Inspector Setable
     public bool OccludesInput = true;
 
     /// <summary>
@@ -22,7 +33,14 @@ public class GameObjectProxy : MonoBehaviour, IComparable {
     /// </summary>
     /// <value>The priority.</value>
     public int Priority = DEFAULT_PRIORITY;
+
     #endregion
+
+
+
+    public Vector3? TapStartedAt                { get; set; }
+	public GameObjectProxyReceiver Receiver		{ get; set; }
+
 
 
 	void OnMouseDown() {
@@ -47,6 +65,7 @@ public class GameObjectProxy : MonoBehaviour, IComparable {
 	}
 
 
+
     // NOTE: This doesn't route through GameObjectProxyBookkeeper. If prioritizing collisions is a desired feature, pipe these through the bookeeper like the input functions.
     void OnCollisionEnter( Collision c ) {
         if( Receiver != null )
@@ -54,20 +73,12 @@ public class GameObjectProxy : MonoBehaviour, IComparable {
     }
 
 
+
     public int CompareTo( object thatObj ) {
         var thatProxy = thatObj as GameObjectProxy;
         return this.Priority.CompareTo( thatProxy.Priority);
     }
 
-	
-}
-
-
-public interface GameObjectProxyReceiver {
-	void TouchDown( Vector3 screenPosition );
-	void TouchUp( Vector3 screenPosition );
-	void TouchDrag( Vector3 start, Vector3 now );
-    void CollisionEnter( Collision collision );
 }
 
 }

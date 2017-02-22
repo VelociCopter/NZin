@@ -1,18 +1,18 @@
-﻿#pragma warning disable 162
-
-
-using System;
+﻿using System;
 using UnityEngine;
 
 
 namespace NZin {
 
 
+
 /// <summary>
 /// A signal for any entity decoration to declare the whole chain should dispose of itself.
-/// Due to linking issues, this decoration should be added as soon as possible so further decorations have a chance to subscribe.
+/// Due to linking dependencies, this decoration should be added as soon as possible so further decorations have a chance to subscribe.
+/// NOTE: The Entity class automatically (internally) decorates itself with a Disposable instance.
 /// </summary>
 public class Disposable<T> : Decorator<T>, Decoratable where T : Decoratable {
+#pragma warning disable 162
     public const bool DEBUG_LOG = false;
 
 

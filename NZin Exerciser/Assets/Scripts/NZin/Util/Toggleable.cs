@@ -1,9 +1,12 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿namespace NZin {
 
 
 public delegate void ToggleEvent();
 
+
+/// <summary>
+/// Something with an & or off state
+/// </summary>
 public class Toggleable {
 
 
@@ -17,7 +20,7 @@ public class Toggleable {
     }
 
 
-	public void Poke() {
+	public void Toggle() {
 		Set( !v );
 	}
 	public void TurnOff() {
@@ -46,4 +49,6 @@ public class Toggleable {
 	}
 
 	bool v = false;
+}
+
 }

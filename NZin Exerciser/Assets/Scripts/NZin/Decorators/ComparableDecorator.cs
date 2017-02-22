@@ -2,6 +2,9 @@
 
 
 
+namespace NZin {
+
+
 
 /// <summary>
 /// You will almost always want one of these in your Decorator chains. See the "base" Entity, as it uses this decorator.
@@ -83,4 +86,8 @@ public class ComparableDecorator<T> : Decorator<T>, Decoratable, IEquatable<Comp
 	
 	long id = nextId++;
 	static long nextId = 1;
+}
+
+
+
 }

@@ -1,12 +1,29 @@
-using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using StateMachines;
+using NZin.StateMachines;
 
 
 namespace NZin {
 
-public class ModeManager : Singletinittable<ModeManager>, Initializable, Messagable {
+
+
+/// <summary>
+/// Handles overall App Flow
+/// USAGE NOTES:
+/// 	- Implement the entire app flowchart as a StateMachine
+/// 	- Set up the FSM's Edges which will respond to receiving a type of Messge by transitioning along the Edge
+/// 	- For conditional transitions, you can add a TransitionTestDelegate to an edge
+/// </summary>
+public class ModeManager : Singletinittable<ModeManager>, Initializable, Messageable {
+
+
+	public Mode CurrentMode		            	{ get { return fsm.Current as Mode; } }
+
+
+    public U ModeData<U>() where U : Glob {
+        if( CurrentMode == null )
+            return null;
+        else 
+            return fsm.Data as U;
+    }
 
 
 	public void AddEdge<T>( Mode from, Mode to ) where T : Message {
@@ -22,31 +39,31 @@ public class ModeManager : Singletinittable<ModeManager>, Initializable, Messaga
 	}
 
 
-	public Mode CurrentMode		                    { get { return fsm.Current as Mode; } }
-
-    public bool IsInitialized   { get; private set; }
-	public void Initialize() {
-        IsInitialized = true;
-	}
-
-    public U ModeData<U>() where U : Glob {
-        if( CurrentMode == null )
-            return null;
-        else 
-            return fsm.Data as U;
-    }
-
 	public void JumpTo( Mode mode, Glob glob ) {
 		fsm.JumpTo( mode, glob );
 	}
 
 
+
+	#region Initializable Impl
+    public bool IsInitialized   				{ get; private set; }
+	public void Initialize() {
+        IsInitialized = true;
+	}
+	#endregion
+
+
+	#region Messageable Impl
 	public void HandleMessage( Message msg ) {
 		fsm.HandleMessage( msg );
 	}
+	#endregion
+
 
 	
 	StateMachine fsm = new StateMachine();
 }
+
+
 
 }
