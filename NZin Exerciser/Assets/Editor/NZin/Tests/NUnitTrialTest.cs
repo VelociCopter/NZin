@@ -1,6 +1,9 @@
 using NUnit.Framework;
 using NZin;
 
+
+// zzz td: Ensure proper test coverage for most of NZin!
+// zzz td: Kill this class
 namespace NUnitTesting.Test
 {
     [TestFixture]

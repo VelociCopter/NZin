@@ -67,15 +67,6 @@ public class TestEntities {
 	#region Tester classes
 	class EdA : Entity {
 	}
-/*
-	class EdB : ComparableDecorator<EntityDecoratable> { // ZZZ rename
-		public EdB( ComparableDecorator<EntityDecoratable> a )
-			:base( a ) {
-		}
-	}
-*/
-	class PureBase : Decoratable {
-	}
 	class EdB : Entity {
 		public EdB( Entity e )
 			:base( e ) {
