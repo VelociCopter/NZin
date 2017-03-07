@@ -10,7 +10,7 @@ public class AppFlowFactory {
          *  that matches the ModeManager instead of piping all messages through. For the game modes (the
          *  current "app state" if you will, we will use Unconditional Receivers.
          */
-        var mgr = new StateManagerMixin();
+        var mgr = new StateManager();
         AppMessenger.Instance.RegisterUnconditionalReceiver( mgr );
 
 
@@ -29,7 +29,7 @@ public class AppFlowFactory {
 
 
     public static void SetupHudModes( Glob glob ) {
-        var mgr = new StateManagerMixin();
+        var mgr = new StateManager();
         AppMessenger.Instance.RegisterUnconditionalReceiver( mgr );
 
 

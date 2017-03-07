@@ -4,12 +4,8 @@ using System.Collections.Generic;
 using NZin.StateMachines;
 
 
-
 namespace NZin {
 
-public interface StateManager {
-	StateManagerMixin StateManager	{ get; }
-}
 
 
 /// <summary>
@@ -20,10 +16,10 @@ public interface StateManager {
 public class StateManagerMaster : Singleton<StateManagerMaster> {
 
 
-	public void RegisterStateManager( StateManagerMixin mgr ) {
+	public void RegisterStateManager( StateManager mgr ) {
 		stateManagers.Add( mgr );
 	}
-	List<StateManagerMixin> stateManagers = new List<StateManagerMixin>();
+	List<StateManager> stateManagers = new List<StateManager>();
 
 	
 // zzz todo: Make version of these 3 calls for Entities as well
@@ -64,9 +60,9 @@ public class StateManagerMaster : Singleton<StateManagerMaster> {
 }
 
 // zzz usage notes?
-public class StateManagerMixin : Initializable, Messageable {
+public class StateManager : Initializable, Messageable {
 
-	public StateManagerMixin() {
+	public StateManager() {
 		StateManagerMaster.Instance.RegisterStateManager( this );
 	}
 
