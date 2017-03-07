@@ -35,37 +35,33 @@ public class GroundPlane : GameObjectProxy, GameObjectProxyReceiver {    // TODO
 
 
     public void TouchDown( Vector3 screenPosition ) {
-        Action<Mode> tryPoke = ( mode ) => {
-            var pokeable = mode as Pokeable;
-            if( pokeable != null )
-                pokeable.Poke( this );
-        };
-
-        tryPoke( ModeManager.Instance.CurrentMode );
+		var worldPosition = ScreenToWorldPoint( screenPosition );
+        StateManagerMaster.Instance.PokeAll( this, worldPosition );
     }
     public void TouchUp( Vector3 screenPosition ) {
-        Action<Mode> tryRelease = ( mode ) => {
-            var releaseable = mode as Releaseable;
-            if( releaseable != null )
-                releaseable.Release( this );
-        };
-
-        tryRelease( ModeManager.Instance.CurrentMode );
+		//
+		//StateManagerMaster.Instance.ReleaseAll( this );
     }
-    public void TouchDrag( Vector3 start, Vector3 diff ) {
-        Action<Mode,Vector3,Vector3> tryScrape = ( mode, s, d ) => {
-            var scrapeable = mode as Scrapeable;
-            if( scrapeable != null ) {
-                scrapeable.Scrape( this, s, d );
-            }
-        };
-
-        tryScrape( ModeManager.Instance.CurrentMode, start, diff );
+    public void TouchDrag( Vector3 start, Vector3 now ) {
+		Assertion.Unimplemented();
+		//StateManagerMaster.Instance.ScrapeAll( this, start, now );
     }
 
 
     public void CollisionEnter( Collision collision ) {
     }
+	
+	
+	Vector3 ScreenToWorldPoint( Vector3 screenPoint ) {
+		var ray = ZinCam.Instance.ScreenPointToRay( screenPoint );
+		float d;
+		if( !Plane.Raycast( ray, out d )) {
+			Assertion.UnexpectedEntry();
+			return Vector3.zero;
+		} else {
+			return ray.GetPoint( d );
+		}
+	}
 }
 
 }

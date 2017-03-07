@@ -42,12 +42,13 @@ public class EntryPoint : MonoBehaviour {
         // (which is everything, so they're basically just globals.
         Glob glob = new Glob();
 
-        // Now setup the "Mode"
+        // Now setup the "Modes"
         // This can be treated simply as an FSM that drives the HUD depending on what part of the game the user is in.
         // It can also be used more extensively to drive things like scenes and data loading.
         // You may choose to only have a single MODE FSM to drive everything (including the HUD), but keeping them separate allows for more flexibility.
-        AppFlowFactory.CreateModes( glob );
-        //zzz td ExampleHudFactory.CreateHud( glob );
+		AppFlowFactory.SetupAppModes( glob );
+		AppFlowFactory.SetupHudModes( glob );
+
     }
 
 
