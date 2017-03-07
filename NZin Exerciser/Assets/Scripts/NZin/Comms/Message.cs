@@ -66,8 +66,12 @@ public class Message {
 
 
     public override string ToString() {
-        return string.Format( "[ Message: Id={0}, RoutingType={1}, SenderId={2}, ReceiverId={3}, IsConsumable={4}, Consumed={5} ]", 
-            MessageId, RoutingType, SenderId, ReceiverId, IsConsumable, IsConsumed
+        var isConsumedChunk = "";
+        if( IsConsumable ) {
+            isConsumedChunk = string.Format( ", IsConsumed?{0}", IsConsumed );
+        }
+        return string.Format( "[ Message: RoutingType={0}, Id={1}, SenderId={2}, ReceiverId={3}, IsConsumable?{4}{5} ]", 
+            RoutingType, MessageId, SenderId, ReceiverId, IsConsumable, isConsumedChunk
         );
     }
 }
